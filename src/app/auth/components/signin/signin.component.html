@@ -1,0 +1,33 @@
+<h1 class="">Hi there,</h1>
+<p class="lead text-muted">Please login using your credentials</p>
+<form class="mt-4 mb-3" [formGroup]="signinForm" (ngSubmit)="onSubmit()">
+    <div class="form-group has-feedback">
+        <label class="text-bold-md text-muted">Email or username</label>
+        <input type="text" formControlName="username" class="form-control" placeholder="example@mail.com"
+            [ngClass]="{'is-invalid': signinForm.controls.username.dirty && signinForm.controls.username.invalid}"
+            required autofocus>
+    </div>
+
+    <div class="form-group has-feedback">
+        <label class="text-bold-md text-muted">Password</label>
+        <input type="password" formControlName="password" class="form-control" placeholder="password"
+            [ngClass]="{'is-invalid': signinForm.controls.password.dirty && signinForm.controls.password.invalid}"
+            required>
+    </div>
+
+    <div class="d-flex justify-content-between">
+        <button [disabled]="signinForm.invalid || signinForm.pending || authState?.isLoginProgress"
+            class="btn btn-primary pl-4 pr-4">
+            {{authState?.isLoginProgress ? 'Signing in...' : 'Sign in'}}
+        </button>
+        <div class="mt-2">
+            <a class="text-muted link text-bold-md small" routerLink="/auth/recover-password">Forgotten your
+                password?</a>
+        </div>
+    </div>
+</form>
+
+<code class="text-center">
+"email": "eve.holt@reqres.in",
+"password": "cityslicka"
+</code>
